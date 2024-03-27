@@ -3,12 +3,13 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import ShoppingCartButton from "./ShoppingCartButton";
 
-async function searchProduct(formData: FormData) {
+async function searchProducts(formData: FormData) {
   "use server";
+
   const searchQuery = formData.get("searchQuery")?.toString();
 
   if (searchQuery) {
-    redirect("/search/query=" + searchQuery);
+    redirect("/search?query=" + searchQuery);
   }
 }
 
@@ -23,7 +24,7 @@ export default async function Navbar() {
           </Link>
         </div>
         <div className="flex-none gap-2">
-          <form action={searchProduct}>
+          <form action={searchProducts}>
             <div className="form-control">
               <input
                 name="searchQuery"
